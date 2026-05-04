@@ -30,6 +30,13 @@ defmodule Example do
     else
       IO.puts("Get lost")
     end
+
+    case status do
+      :gold -> IO.puts("you have status of gold")
+      :silver -> IO.puts("you have status of silver")
+      :bronze -> IO.puts("you have status of bronze")
+      _ -> IO.puts("you are not a member")
+    end
   end
 
 end
