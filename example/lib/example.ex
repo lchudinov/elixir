@@ -21,6 +21,15 @@ defmodule Example do
     IO.puts(@y)
     IO.puts(:hello)
     IO.puts(:"hello world")
+
+    name = "Leonty"
+    status = Enum.random([:gold, :silver, :bronze])
+
+    if status === :gold do
+      IO.puts("Welcome to fancy lounge #{name}")
+    else
+      IO.puts("Get lost")
+    end
   end
 
 end
