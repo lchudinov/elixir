@@ -37,6 +37,11 @@ defmodule Example do
       :bronze -> IO.puts("you have status of bronze")
       _ -> IO.puts("you are not a member")
     end
+
+    IO.puts("This\na\nmessage\n")
+    IO.puts("After")
+    IO.puts(?a)
+    IO.puts(?Л)
   end
 
 end
