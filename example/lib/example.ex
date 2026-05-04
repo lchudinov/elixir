@@ -42,6 +42,13 @@ defmodule Example do
     IO.puts("After")
     IO.puts(?a)
     IO.puts(?Л)
+
+    a = 10
+    b = 3.0
+    IO.puts(a + b)
+    :io.format("~.20f\n", [a / b])
+    IO.puts(Float.ceil(1.234, 1))
+    IO.puts(Integer.gcd(9, 27))
   end
 
 end
