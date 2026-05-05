@@ -3,6 +3,7 @@ defmodule Example do
   @y 10
   alias UUID
 
+  @spec start(any(), any()) :: none()
   def start(_type, _args) do
     IO.puts(UUID.uuid4())
     IO.puts(Example.hello())
@@ -49,8 +50,28 @@ defmodule Example do
     :io.format("~.20f\n", [a / b])
     IO.puts(Float.ceil(1.234, 1))
     IO.puts(Integer.gcd(9, 27))
+
+    time = Time.new!(16, 30, 0, 0)
+    {:ok, date} = Date.new(2026, 5, 5)
+    {:ok, date_time} = DateTime.new(date, time, "Etc/UTC")
+    IO.inspect(time)
+    IO.inspect(date)
+    IO.inspect(date_time)
+
+    time_to_new_year()
   end
 
+  def time_to_new_year do
+    time = DateTime.new!(Date.new!(2027, 1, 1), Time.new!(0, 0, 0, 0), "Etc/UTC")
+    time_till = DateTime.diff(time, DateTime.utc_now())
+    IO.puts(time_till)
+    days = div(time_till, 86_400)
+    hours = div(rem(time_till, 86_400), 3600)
+    minutes = div(rem(rem(time_till, 86_400), 3600), 60)
+    seconds = rem(rem(rem(time_till, 86_400), 3600), 60)
+    IO.puts("Time until New Year #{days} days #{hours} hours #{minutes} minutes #{seconds} seconds")
+  end
 end
 
-Example.hello() # this line executes when the code is compiled
+# this line executes when the code is compiled
+Example.hello()
