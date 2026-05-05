@@ -59,6 +59,7 @@ defmodule Example do
     IO.inspect(date_time)
 
     time_to_new_year()
+    tuples()
   end
 
   def time_to_new_year do
@@ -69,7 +70,35 @@ defmodule Example do
     hours = div(rem(time_till, 86_400), 3600)
     minutes = div(rem(rem(time_till, 86_400), 3600), 60)
     seconds = rem(rem(rem(time_till, 86_400), 3600), 60)
-    IO.puts("Time until New Year #{days} days #{hours} hours #{minutes} minutes #{seconds} seconds")
+
+    IO.puts(
+      "Time until New Year #{days} days #{hours} hours #{minutes} minutes #{seconds} seconds"
+    )
+  end
+
+  def tuples do
+    memberships = {:bronze, :silver}
+    memberships = Tuple.append(memberships, :bronze)
+    IO.inspect(memberships)
+
+    prices = {5, 10, 15}
+    avg = Tuple.sum(prices) / tuple_size(prices)
+    IO.puts("Average price: #{avg}")
+
+    IO.puts(
+      "Average price from #{elem(memberships, 0)} #{elem(memberships, 1)} #{elem(memberships, 2)} is #{avg}"
+    )
+
+    user1 = {"Leonty", :gold}
+    user2 = {"Civic", :gold}
+    user3 = {"Kathy", :silver}
+
+    {name, membership} = user1
+    IO.puts("#{name} has a #{membership} membership")
+    {name, membership} = user2
+    IO.puts("#{name} has a #{membership} membership")
+    {name, membership} = user3
+    IO.puts("#{name} has a #{membership} membership")
   end
 end
 
