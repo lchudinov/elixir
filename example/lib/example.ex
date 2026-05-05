@@ -60,6 +60,7 @@ defmodule Example do
 
     time_to_new_year()
     tuples()
+    lists_and_loops()
   end
 
   def time_to_new_year do
@@ -99,6 +100,14 @@ defmodule Example do
     IO.puts("#{name} has a #{membership} membership")
     {name, membership} = user3
     IO.puts("#{name} has a #{membership} membership")
+  end
+
+  def lists_and_loops do
+    users = [{"Leonty", :gold}, {"Civic", :gold}, {"Kathy", :silver}, {"John", :gold}]
+
+    Enum.each(users, fn {name, membership} ->
+      IO.puts("#{name} has a #{membership} membership")
+    end)
   end
 end
 
