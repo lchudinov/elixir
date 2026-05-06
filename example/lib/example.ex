@@ -24,6 +24,10 @@ defmodule Example do
   end
 
   def main do
+    IO.puts("This is a tutorial https://www.youtube.com/watch?v=-lgtb-YSUWE")
+  end
+
+  def tutorial do
     x = 10
     IO.puts("Example output")
     IO.puts(x)
