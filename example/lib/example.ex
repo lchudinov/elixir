@@ -203,6 +203,32 @@ defmodule Example do
     even = for n <- final, Integer.is_even(2), do: n * n
     IO.inspect(even)
   end
+
+  def sum_and_average(numbers) do
+    sum = Enum.sum(numbers)
+    average = sum / Enum.count(numbers)
+    {sum, average}
+  end
+
+  def print_numbers(numbers) do
+    numbers |> Enum.join(" ") |> IO.puts()
+  end
+
+  def get_numbers_from_user do
+    IO.puts("Enter numbers separated by spaces: ")
+    user_input = IO.gets("") |> String.trim()
+    String.split(user_input, " ") |> Enum.map(&String.to_integer/1)
+  end
+
+  def functional do
+    numbers = get_numbers_from_user()
+    Enum.each(numbers, fn num -> IO.puts(num) end)
+
+    numbers = ["1", "2", "3", "4", "5"]
+    result = Enum.map(numbers, &String.to_integer/1)
+    IO.inspect(sum_and_average(result))
+    print_numbers(result)
+  end
 end
 
 # this line executes when the code is compiled
