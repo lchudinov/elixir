@@ -167,12 +167,23 @@ defmodule Example do
 
   def guess_game do
     correct = :rand.uniform(11) - 1
-    guess = IO.gets("Guess a number between 0 and 10: ") |> String.trim()
+    guess = IO.gets("Guess a number between 0 and 10: ") |> String.trim() |> Integer.parse()
 
-    if String.to_integer(guess) == correct do
-      IO.puts("You win!")
-    else
-      IO.puts("You lose! You guessed #{guess}, correct was #{correct}")
+    case guess do
+      {result, ""} ->
+        IO.puts("parse successful #{result}")
+
+        if result === correct do
+          IO.puts("You win!")
+        else
+          IO.puts("You lose!")
+        end
+
+      {result, other} ->
+        IO.puts("parse partially successful #{result} rest: #{other}")
+
+      :error ->
+        IO.puts("Something went wrong")
     end
   end
 end
