@@ -164,6 +164,17 @@ defmodule Example do
       IO.puts("#{name} has a #{membership.type} membership paying #{membership.price}")
     end)
   end
+
+  def guess_game do
+    correct = :rand.uniform(11) - 1
+    guess = IO.gets("Guess a number between 0 and 10: ") |> String.trim()
+
+    if String.to_integer(guess) == correct do
+      IO.puts("You win!")
+    else
+      IO.puts("You lose! You guessed #{guess}, correct was #{correct}")
+    end
+  end
 end
 
 # this line executes when the code is compiled
