@@ -9,6 +9,7 @@ end
 defmodule Example do
   use Application
   @y 10
+  require Integer
   alias UUID
 
   @spec start(any(), any()) :: none()
@@ -189,6 +190,18 @@ defmodule Example do
       :error ->
         IO.puts("Something went wrong")
     end
+  end
+
+  def lists do
+    grades = [25, 50, 75, 100]
+    for n <- grades, do: IO.puts(n)
+    new = for n <- grades, do: n + 5
+    IO.inspect(new)
+    new = new ++ [125, 150, 175]
+    final = [5 | new]
+    IO.inspect(final)
+    even = for n <- final, Integer.is_even(2), do: n * n
+    IO.inspect(even)
   end
 end
 
