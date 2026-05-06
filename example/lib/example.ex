@@ -1,3 +1,11 @@
+defmodule Membership do
+  defstruct [:type, :price]
+end
+
+defmodule User do
+  defstruct [:name, :membership]
+end
+
 defmodule Example do
   use Application
   @y 10
@@ -62,6 +70,7 @@ defmodule Example do
     tuples()
     lists_and_loops()
     maps()
+    structs()
   end
 
   def time_to_new_year do
@@ -135,6 +144,24 @@ defmodule Example do
 
     Enum.each(users, fn {name, membership} ->
       IO.puts("#{name} has a #{membership} membership paying #{prices[membership]}")
+    end)
+  end
+
+  def structs do
+    gold_membership = %Membership{type: :gold, price: 25}
+    silver_membership = %Membership{type: :silver, price: 20}
+    bronze_membership = %Membership{type: :bronze, price: 15}
+    none_membership = %Membership{type: :none, price: 0}
+
+    users = [
+      %User{name: "Leonty", membership: gold_membership},
+      %User{name: "Civic", membership: gold_membership},
+      %User{name: "Kathy", membership: silver_membership},
+      %User{name: "John", membership: bronze_membership}
+    ]
+
+    Enum.each(users, fn %User{name: name, membership: membership} ->
+      IO.puts("#{name} has a #{membership.type} membership paying #{membership.price}")
     end)
   end
 end
