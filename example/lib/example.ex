@@ -61,6 +61,7 @@ defmodule Example do
     time_to_new_year()
     tuples()
     lists_and_loops()
+    maps()
   end
 
   def time_to_new_year do
@@ -107,6 +108,33 @@ defmodule Example do
 
     Enum.each(users, fn {name, membership} ->
       IO.puts("#{name} has a #{membership} membership")
+    end)
+  end
+
+  def maps do
+    memeberships = %{
+      gold: :gold,
+      silver: :silver,
+      bronze: :bronze,
+      none: :none
+    }
+
+    prices = %{
+      gold: 25,
+      silver: 20,
+      bronze: 10,
+      none: 0
+    }
+
+    users = [
+      {"Leonty", memeberships.gold},
+      {"Civic", memeberships.gold},
+      {"Kathy", memeberships.silver},
+      {"John", memeberships.gold}
+    ]
+
+    Enum.each(users, fn {name, membership} ->
+      IO.puts("#{name} has a #{membership} membership paying #{prices[membership]}")
     end)
   end
 end
