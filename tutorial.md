@@ -19,3 +19,8 @@ Start your Phoenix app with:
 You can also run your app inside IEx (Interactive Elixir) as:
 
   `iex -S mix phx.server`
+  
+Create a Post Controller
+`mix phx.gen.json Posts Post posts body:string title:string`
+then add to a router manually, and then run,
+`mix ecto.migrate`
