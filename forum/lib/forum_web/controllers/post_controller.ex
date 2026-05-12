@@ -12,7 +12,10 @@ defmodule ForumWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
+    # result = Posts.create_post(post_params)
+    # IO.inspect(result, label: "db result")
     with {:ok, %Post{} = post} <- Posts.create_post(post_params) do
+      # IO.puts("post_params #{inspect(post_params)}")
       conn
       |> put_status(:created)
       |> put_resp_header("location", ~p"/api/posts/#{post}")

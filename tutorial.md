@@ -24,3 +24,6 @@ Create a Post Controller
 `mix phx.gen.json Posts Post posts body:string title:string`
 then add to a router manually, and then run,
 `mix ecto.migrate`
+
+
+`mix phx.routes` - List of routes
