@@ -37,3 +37,4 @@ Create a migration to add a new column to the posts table:
 `mix ecto.gen.migration add_user_id_to_post`
 write the migration code, then
 `mix ecto.migrate`
+Manually add a new column into the schema
