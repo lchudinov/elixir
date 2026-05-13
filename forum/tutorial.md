@@ -32,3 +32,8 @@ then add to a router manually, and then run,
 `mix phx.gen.json Accounts User users name:string email:string:unique`
 then add to a router manually, and then run,
 `mix ecto.migrate`
+
+Create a migration to add a new column to the posts table:
+`mix ecto.gen.migration add_user_id_to_post`
+write the migration code, then
+`mix ecto.migrate`
