@@ -27,3 +27,6 @@ then add to a router manually, and then run,
 
 
 `mix phx.routes` - List of routes
+
+
+`mix phx.gen.json Accounts User users name:string email:string:unique`
