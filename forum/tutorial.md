@@ -30,3 +30,5 @@ then add to a router manually, and then run,
 
 
 `mix phx.gen.json Accounts User users name:string email:string:unique`
+then add to a router manually, and then run,
+`mix ecto.migrate`
