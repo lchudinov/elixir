@@ -105,9 +105,10 @@ defmodule Forum.Accounts do
   def count_users do
     count = Repo.aggregate(User, :count, :id)
     :telemetry.execute(
-      [:forum, :users, :count, :total],
-      %{total: count}
+      [:forum, :users],
+      %{count: count}
     )
+    IO.inspect(count, label: "USER COUNT")
     count
   end
 end

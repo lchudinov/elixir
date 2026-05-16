@@ -11,7 +11,7 @@ defmodule ForumWeb.Telemetry do
     children = [
       # Telemetry poller will execute the given period measurements
       # every 10_000ms. Learn more here: https://hexdocs.pm/telemetry_metrics
-      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000}
+      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000},
       # Add reporters as children of your supervision tree.
       # {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
     ]
@@ -75,6 +75,13 @@ defmodule ForumWeb.Telemetry do
           "The time the connection spent waiting before being checked out for the query"
       ),
 
+      # User count metric
+      last_value("forum.users.count",
+        event_name: [:forum, :users],
+        measurement: :count,
+        description: "Общее количество зарегистрированных пользователей"
+      ),
+
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
       summary("vm.total_run_queue_lengths.total"),
@@ -88,6 +95,7 @@ defmodule ForumWeb.Telemetry do
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
       # {ForumWeb, :count_users, []}
+      {Forum.Accounts, :count_users, []}
     ]
   end
 end

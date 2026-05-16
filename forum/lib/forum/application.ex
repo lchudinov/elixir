@@ -8,8 +8,8 @@ defmodule Forum.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      ForumWeb.Telemetry,
       Forum.Repo,
+      ForumWeb.Telemetry,
       {Ecto.Migrator,
        repos: Application.fetch_env!(:forum, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:forum, :dns_cluster_query) || :ignore},
