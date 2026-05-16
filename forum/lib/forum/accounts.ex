@@ -18,7 +18,7 @@ defmodule Forum.Accounts do
 
   """
   def list_users do
-    Repo.all(User)
+    Repo.all(User) |> Repo.preload(:posts)
   end
 
   @doc """
@@ -100,5 +100,14 @@ defmodule Forum.Accounts do
   """
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
+  end
+
+  def count_users do
+    count = Repo.aggregate(User, :count, :id)
+    :telemetry.execute(
+      [:forum, :users, :count, :total],
+      %{total: count}
+    )
+    count
   end
 end
