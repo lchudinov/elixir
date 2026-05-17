@@ -23,9 +23,13 @@ case Req.post(
     json: payload
 ) do
   {:ok, response} ->
-    IO.inspect(response.body, pretty: true)
+    case response.status do
+      201 ->
+        IO.inspect(response.body, pretty: true, label: "Response")
+      _ ->
+        IO.inspect(response.body, label: "HTTP error #{response.status}")
+    end
 
   {:error, exception} ->
-    IO.puts(:stderr, "Request failed:")
-    IO.inspect(exception, pretty: true)
+    IO.inspect(exception, pretty: true, label: "Request failed")
 end
