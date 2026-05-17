@@ -1,6 +1,13 @@
 Mix.install([:req])
 
-[name] = System.argv()
+name =
+  case System.argv() do
+    [name] -> name
+    _ ->
+      IO.puts("Usage:")
+      IO.puts("  elixir create-user.exs <name>")
+      System.halt(1)
+  end
 
 payload = %{
   user: %{
