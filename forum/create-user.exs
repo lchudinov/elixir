@@ -1,11 +1,13 @@
 Mix.install([:req])
 
+script_name = __ENV__.file |> Path.basename()
+
 name =
   case System.argv() do
     [name] -> name
     _ ->
       IO.puts("Usage:")
-      IO.puts("  elixir create-user.exs <name>")
+      IO.puts("  elixir #{script_name} <name>")
       System.halt(1)
   end
 
