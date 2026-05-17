@@ -23,11 +23,11 @@ case Req.post(
     json: payload
 ) do
   {:ok, response} ->
-    case response.status do
-      201 ->
-        IO.inspect(response.body, pretty: true, label: "Response")
-      _ ->
-        IO.inspect(response.body, label: "HTTP error #{response.status}")
+    case response do
+      %{status: 201, body: body} ->
+        IO.inspect(body, pretty: true, label: "Response")
+      %{status: status, body: body} ->
+        IO.inspect(body, label: "HTTP error #{status}")
     end
 
   {:error, exception} ->
