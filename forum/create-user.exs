@@ -1,9 +1,11 @@
 Mix.install([:req])
 
+[name] = System.argv()
+
 payload = %{
   user: %{
-    name: "Leonty",
-    email: "leonty@email.com"
+    name: name,
+    email: "#{String.downcase(name)}@email.com"
   }
 }
 
