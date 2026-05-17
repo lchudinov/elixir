@@ -75,11 +75,16 @@ defmodule ForumWeb.Telemetry do
           "The time the connection spent waiting before being checked out for the query"
       ),
 
-      # User count metric
-      last_value("forum.users.count",
+      # User count metrics
+      summary("my-metric.users.count.summary",
         event_name: [:forum, :users],
         measurement: :count,
-        description: "Общее количество зарегистрированных пользователей"
+        description: "Total users (summary)"
+      ),
+      last_value("my-metric.users.count.last-value",
+        event_name: [:forum, :users],
+        measurement: :count,
+        description: "Total users (last value)"
       ),
 
       # VM Metrics
