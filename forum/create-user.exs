@@ -18,10 +18,14 @@ payload = %{
   }
 }
 
-response =
-  Req.post!(
+case Req.post(
     "http://localhost:4000/api/users",
     json: payload
-  )
+) do
+  {:ok, response} ->
+    IO.inspect(response.body, pretty: true)
 
-IO.inspect(response.body, pretty: true)
+  {:error, exception} ->
+    IO.puts(:stderr, "Request failed:")
+    IO.inspect(exception, pretty: true)
+end
