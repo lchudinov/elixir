@@ -1,0 +1,591 @@
+{
+  "modules": [
+    {
+      "prefix": "aaa",
+      "namespace": "http://tail-f.com/ns/aaa/1.1",
+      "name": "tailf-aaa"
+    },
+    {
+      "prefix": "tailf",
+      "namespace": "http://tail-f.com/yang/common",
+      "name": "tailf-common"
+    }
+  ],
+  "tree": [
+    {
+      "type": "container",
+      "name": "aaa:aaa",
+      "children": [
+        {
+          "type": "container",
+          "name": "authentication",
+          "children": [
+            {
+              "type": "container",
+              "name": "users",
+              "children": [
+                {
+                  "type": "list",
+                  "name": "user",
+                  "children": [
+                    {
+                      "type": "string",
+                      "name": "name",
+                      "yang:type": "string",
+                      "string": {}
+                    },
+                    {
+                      "type": "int32",
+                      "name": "uid",
+                      "yang:type": "int32",
+                      "mandatory": true
+                    },
+                    {
+                      "type": "int32",
+                      "name": "gid",
+                      "yang:type": "int32",
+                      "mandatory": true
+                    },
+                    {
+                      "type": "string",
+                      "name": "password",
+                      "yang:type": "passwdStr",
+                      "string": {},
+                      "mandatory": true
+                    },
+                    {
+                      "type": "string",
+                      "name": "ssh_keydir",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    },
+                    {
+                      "type": "string",
+                      "name": "homedir",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    }
+                  ],
+                  "keys": [
+                    "name"
+                  ],
+                  "maxElements": 1024
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "name": "groups",
+              "children": [
+                {
+                  "type": "list",
+                  "name": "group",
+                  "children": [
+                    {
+                      "type": "string",
+                      "name": "name",
+                      "yang:type": "string",
+                      "string": {}
+                    },
+                    {
+                      "type": "int32",
+                      "name": "gid",
+                      "yang:type": "int32"
+                    },
+                    {
+                      "type": "string",
+                      "name": "users",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    }
+                  ],
+                  "keys": [
+                    "name"
+                  ],
+                  "maxElements": 32
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "name": "authorization",
+          "children": [
+            {
+              "type": "container",
+              "name": "cmdrules",
+              "children": [
+                {
+                  "type": "list",
+                  "name": "cmdrule",
+                  "children": [
+                    {
+                      "type": "uint32",
+                      "name": "index",
+                      "yang:type": "uint32"
+                    },
+                    {
+                      "type": "string",
+                      "name": "context",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    },
+                    {
+                      "type": "string",
+                      "name": "command",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    },
+                    {
+                      "type": "string",
+                      "name": "group",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    },
+                    {
+                      "type": "enumeration",
+                      "name": "ops",
+                      "yang:type": "cmdOperationType",
+                      "enum": [
+                        "r",
+                        "rx",
+                        "x"
+                      ],
+                      "mandatory": true
+                    },
+                    {
+                      "type": "enumeration",
+                      "name": "action",
+                      "yang:type": "Action",
+                      "enum": [
+                        "accept",
+                        "reject",
+                        "accept_log"
+                      ],
+                      "mandatory": true
+                    }
+                  ],
+                  "keys": [
+                    "index"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "container",
+              "name": "datarules",
+              "children": [
+                {
+                  "type": "list",
+                  "name": "datarule",
+                  "children": [
+                    {
+                      "type": "uint32",
+                      "name": "index",
+                      "yang:type": "uint32"
+                    },
+                    {
+                      "type": "string",
+                      "name": "namespace",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    },
+                    {
+                      "type": "string",
+                      "name": "context",
+                      "yang:type": "string",
+                      "string": {},
+                      "default": "*"
+                    },
+                    {
+                      "type": "string",
+                      "name": "keypath",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    },
+                    {
+                      "type": "string",
+                      "name": "group",
+                      "yang:type": "string",
+                      "string": {},
+                      "mandatory": true
+                    },
+                    {
+                      "type": "enumeration",
+                      "name": "ops",
+                      "yang:type": "dataOperationType",
+                      "enum": [
+                        "r",
+                        "rx",
+                        "x",
+                        "rw",
+                        "rwx",
+                        "wx",
+                        "w",
+                        "c",
+                        "cr",
+                        "cu",
+                        "cd",
+                        "cx",
+                        "cru",
+                        "crd",
+                        "crx",
+                        "cud",
+                        "cux",
+                        "cdx",
+                        "crud",
+                        "crux",
+                        "crdx",
+                        "cudx",
+                        "crudx",
+                        "ru",
+                        "rd",
+                        "rud",
+                        "rux",
+                        "rdx",
+                        "u",
+                        "ud",
+                        "ux",
+                        "d",
+                        "dx"
+                      ],
+                      "mandatory": true
+                    },
+                    {
+                      "type": "enumeration",
+                      "name": "action",
+                      "yang:type": "Action",
+                      "enum": [
+                        "accept",
+                        "reject",
+                        "accept_log"
+                      ],
+                      "mandatory": true
+                    }
+                  ],
+                  "keys": [
+                    "index"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "name": "ios",
+          "children": [
+            {
+              "type": "list",
+              "name": "level",
+              "children": [
+                {
+                  "type": "int32",
+                  "name": "nr",
+                  "yang:type": "levelInt",
+                  "range": "0 .. 15"
+                },
+                {
+                  "type": "string",
+                  "name": "secret",
+                  "yang:type": "passwdStr",
+                  "string": {}
+                },
+                {
+                  "type": "string",
+                  "name": "password",
+                  "yang:type": "passwdStr",
+                  "string": {}
+                },
+                {
+                  "type": "string",
+                  "name": "prompt",
+                  "yang:type": "string",
+                  "string": {},
+                  "default": "\\h# "
+                }
+              ],
+              "keys": [
+                "nr"
+              ],
+              "minElements": 2
+            },
+            {
+              "type": "list",
+              "name": "privilege",
+              "children": [
+                {
+                  "type": "union",
+                  "name": "mode",
+                  "yang:type": "modeStr",
+                  "union": [
+                    {
+                      "type": "string",
+                      "string": {}
+                    },
+                    {
+                      "type": "enumeration",
+                      "enumeration": [
+                        [
+                          "exec",
+                          "configure"
+                        ],
+                        []
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "list",
+                  "name": "level",
+                  "children": [
+                    {
+                      "type": "int32",
+                      "name": "nr",
+                      "yang:type": "levelInt",
+                      "range": "0 .. 15"
+                    },
+                    {
+                      "type": "list",
+                      "name": "command",
+                      "children": [
+                        {
+                          "type": "string",
+                          "name": "name",
+                          "yang:type": "string",
+                          "string": {}
+                        }
+                      ],
+                      "keys": [
+                        "name"
+                      ]
+                    }
+                  ],
+                  "keys": [
+                    "nr"
+                  ],
+                  "minElements": 1,
+                  "maxElements": 15
+                }
+              ],
+              "keys": [
+                "mode"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "name": "aaa:alias",
+      "children": [
+        {
+          "type": "string",
+          "name": "name",
+          "yang:type": "string",
+          "string": {}
+        },
+        {
+          "type": "string",
+          "name": "expansion",
+          "yang:type": "string",
+          "string": {},
+          "mandatory": true
+        }
+      ],
+      "keys": [
+        "name"
+      ]
+    },
+    {
+      "type": "container",
+      "name": "aaa:session",
+      "children": [
+        {
+          "type": "boolean",
+          "name": "complete-on-space",
+          "yang:type": "boolean"
+        },
+        {
+          "type": "boolean",
+          "name": "ignore-leading-space",
+          "yang:type": "boolean"
+        },
+        {
+          "type": "uint64",
+          "name": "idle-timeout",
+          "yang:type": "idle-timeout",
+          "range": "0 .. 8192"
+        },
+        {
+          "type": "boolean",
+          "name": "paginate",
+          "yang:type": "boolean"
+        },
+        {
+          "type": "uint64",
+          "name": "history",
+          "yang:type": "history",
+          "range": "0 .. 8192"
+        },
+        {
+          "type": "boolean",
+          "name": "autowizard",
+          "yang:type": "boolean"
+        },
+        {
+          "type": "boolean",
+          "name": "show-defaults",
+          "yang:type": "boolean"
+        },
+        {
+          "type": "uint64",
+          "name": "display-level",
+          "yang:type": "display-level",
+          "range": "1 .. 64"
+        },
+        {
+          "type": "string",
+          "name": "prompt1",
+          "yang:type": "string",
+          "string": {}
+        },
+        {
+          "type": "string",
+          "name": "prompt2",
+          "yang:type": "string",
+          "string": {}
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "name": "aaa:user",
+      "children": [
+        {
+          "type": "string",
+          "name": "name",
+          "yang:type": "string",
+          "string": {}
+        },
+        {
+          "type": "string",
+          "name": "description",
+          "yang:type": "string",
+          "string": {}
+        },
+        {
+          "type": "list",
+          "name": "alias",
+          "children": [
+            {
+              "type": "string",
+              "name": "name",
+              "yang:type": "string",
+              "string": {}
+            },
+            {
+              "type": "string",
+              "name": "expansion",
+              "yang:type": "string",
+              "string": {},
+              "mandatory": true
+            }
+          ],
+          "keys": [
+            "name"
+          ]
+        },
+        {
+          "type": "container",
+          "name": "session",
+          "children": [
+            {
+              "type": "boolean",
+              "name": "complete-on-space",
+              "yang:type": "boolean"
+            },
+            {
+              "type": "boolean",
+              "name": "ignore-leading-space",
+              "yang:type": "boolean"
+            },
+            {
+              "type": "uint64",
+              "name": "idle-timeout",
+              "yang:type": "idle-timeout",
+              "range": "0 .. 8192"
+            },
+            {
+              "type": "boolean",
+              "name": "paginate",
+              "yang:type": "boolean"
+            },
+            {
+              "type": "uint64",
+              "name": "history",
+              "yang:type": "history",
+              "range": "0 .. 8192"
+            },
+            {
+              "type": "boolean",
+              "name": "autowizard",
+              "yang:type": "boolean"
+            },
+            {
+              "type": "boolean",
+              "name": "show-defaults",
+              "yang:type": "boolean"
+            },
+            {
+              "type": "uint64",
+              "name": "display-level",
+              "yang:type": "display-level",
+              "range": "1 .. 64"
+            },
+            {
+              "type": "string",
+              "name": "prompt1",
+              "yang:type": "string",
+              "string": {}
+            },
+            {
+              "type": "string",
+              "name": "prompt2",
+              "yang:type": "string",
+              "string": {}
+            }
+          ]
+        }
+      ],
+      "keys": [
+        "name"
+      ]
+    }
+  ],
+  "annotations": {},
+  "identities": {
+    "mount-id": {
+      "prefix": "tailf",
+      "base": null,
+      "description": null,
+      "name": "mount-id"
+    },
+    "yang-lib-id": {
+      "prefix": "tailf",
+      "base": "mount-id",
+      "description": null,
+      "name": "yang-lib-id"
+    }
+  }
+}
