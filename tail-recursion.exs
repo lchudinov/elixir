@@ -45,4 +45,8 @@ defmodule TailRecursion do
   defp do_positive([_ | tail], result) do
     do_positive(tail, result)
   end
+
+  def filter_positive(list) do
+    Enum.filter(list, fn x -> x > 0 end)
+  end
 end
