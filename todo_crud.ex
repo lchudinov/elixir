@@ -14,6 +14,21 @@ defmodule TodoList do
     |> Map.values()
     |> Enum.filter(fn entry -> entry.date == date end)
   end
+
+  def update_entry(%TodoList{entries: entries} = todo_list, entry_id, updater_fun) do
+    case Map.fetch(entries, entry_id) do
+      :error -> todo_list
+      {:ok, old_entry} ->
+        new_entry = updater_fun.(old_entry)
+        new_entries = Map.put(entries, new_entry.id, new_entry)
+        %TodoList{todo_list | entries: new_entries}
+    end
+  end
+
+  def delete_entry(%TodoList{entries: entries} = todo_list, entry_id) do
+    new_entries = Map.delete(entries, entry_id)
+    %TodoList{todo_list | entries: new_entries}
+  end
 end
 
 todo_list =
@@ -21,5 +36,7 @@ todo_list =
   |> TodoList.add_entry(%{date: ~D[2023-12-19], title: "Dentist"})
   |> TodoList.add_entry(%{date: ~D[2023-12-20], title: "Shopping"})
   |> TodoList.add_entry(%{date: ~D[2023-12-19], title: "Movies"})
+
+todo_list = put_in(todo_list.entries[3].title, "Theater")
 
 IO.inspect(TodoList.entries(todo_list, ~D[2023-12-19]))
