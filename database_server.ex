@@ -41,3 +41,15 @@ IO.inspect(result, label: "query 1 result")
 DatabaseServer.run_async(server_pid, "query 2")
 result = DatabaseServer.get_result()
 IO.inspect(result, label: "query 2 result")
+
+pool = Enum.map(1..100, fn _ -> DatabaseServer.start() end)
+Enum.each(
+  1..5,
+  fn query_def ->
+    server_pid = Enum.at(pool, :rand.uniform(100) - 1)
+    DatabaseServer.run_async(server_pid, query_def)
+  end
+)
+
+results = Enum.map(1..5, fn _ -> DatabaseServer.get_result() end)
+IO.inspect(results, label: "results")
