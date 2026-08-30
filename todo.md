@@ -1,0 +1,3 @@
+- [x] 5.3.2 Keeping a process state
+- [x] 5.3.3 Mutable state
+- [ ] REFACTORING THE LOOP
